@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.cell.*?> 
+<?import javafx.collections.*?> 
+<?import main.*?> 
+ 
+<HBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="main.PersonController">
+    <children>
+        <VBox>
+            <children>
+                <HBox alignment="TOP_RIGHT">
+                    <children>
+                        <Button mnemonicParsing="false" text="Close" onAction="#closeForm"/>
+                    </children>
+                </HBox>
+                <Label text="Add New Person" />
+                <TextField fx:id="firstName"  promptText="First name" />
+                <TextField fx:id="lastName"  promptText="Last name" />
+                <TextField fx:id="email"  promptText="Email" />
+                <HBox fillHeight="true" >
+                    <children>
+                        <ToggleButton fx:id="male" mnemonicParsing="false" text="Male">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="gender" />
+                            </toggleGroup>
+                        </ToggleButton>
+                        <ToggleButton fx:id="female" mnemonicParsing="false" text="Female" toggleGroup="$gender" />
+                    </children>
+                </HBox>
+                <HBox alignment="TOP_RIGHT">
+                    <children>
+                        <Button fx:id="saveBtn" mnemonicParsing="false" onAction="#savePerson" text="Save" />
+                        <Button fx:id="clearBtn" mnemonicParsing="false" onAction="#clearPerson" text="Clear" />
+                        <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deletePerson" text="Delete" /><!-- DELETE -->
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+        <!-- SAVE + LIST -->
+        <Pane>
+            <TableView fx:id="tabela">
+                <columns>
+                    <TableColumn text="FirstName">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="firstName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="LastName">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="lastName" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Email">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="email" />
+                        </cellValueFactory>                        
+                    </TableColumn>
+                    <TableColumn text="Gender">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="gender" />
+                        </cellValueFactory>                        
+                    </TableColumn>
+                </columns>
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <Person firstName="Jacob" lastName="Smith" email="jacob@smith.com" gender="MALE" />
+                        <Person firstName="Isabella" lastName="Johnson" email="isabella@johnson.com" gender="FEMALE" />
+                        <Person firstName="Ethan" lastName="Williams" email="ethan@williams.com" gender="MALE" />
+                        <Person firstName="Emma" lastName="Jones" email="emma@jones.com" gender="FEMALE" />
+                    </FXCollections>
+                </items>
+            </TableView>
+        </Pane>
+        <!-- SAVE + LIST -->
+    </children>
+</HBox>
